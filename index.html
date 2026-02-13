@@ -30,19 +30,27 @@ body {
 /* TEK KALP */
 .heart {
     position: absolute;
-    width: 100px;
-    height: 100px;
-    opacity: 0.2;
-    background-size: cover;
-    background-position: center;
-    mask: url('https://upload.wikimedia.org/wikipedia/commons/4/49/Heart_corazón.svg') center/contain no-repeat;
-    -webkit-mask: url('https://upload.wikimedia.org/wikipedia/commons/4/49/Heart_corazón.svg') center/contain no-repeat;
-    animation: float 8s linear infinite;
+    width: 70px;
+    height: 70px;
+    opacity: 0.25;
+    animation: float linear infinite;
+}
+
+.heart img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    mask-image: url('heart.png');
+    -webkit-mask-image: url('heart.png');
+    mask-size: contain;
+    -webkit-mask-size: contain;
+    mask-repeat: no-repeat;
+    -webkit-mask-repeat: no-repeat;
 }
 
 @keyframes float {
     from {
-        transform: translateY(100vh) scale(0.8);
+        transform: translateY(110vh) scale(0.8);
     }
     to {
         transform: translateY(-150px) scale(1.2);
@@ -109,22 +117,29 @@ video {
 const heartContainer = document.getElementById("hearts");
 const images = ["love1.jpg", "love2.jpg"];
 
-for (let i = 0; i < 15; i++) {
+for (let i = 0; i < 25; i++) {
+
     const heart = document.createElement("div");
     heart.classList.add("heart");
+
     heart.style.left = Math.random() * 100 + "vw";
-    heart.style.animationDuration = (6 + Math.random() * 6) + "s";
-    heart.style.backgroundImage = `url(${images[Math.floor(Math.random() * images.length)]})`;
+    heart.style.animationDuration = (5 + Math.random() * 5) + "s";
+    heart.style.width = (40 + Math.random() * 50) + "px";
+    heart.style.height = heart.style.width;
+
+    const randomImage = images[Math.floor(Math.random() * images.length)];
+    heart.innerHTML = `<img src="${randomImage}">`;
+
     heartContainer.appendChild(heart);
 }
 
 /* ---- SORU MANTIĞI ---- */
 
 const questions = [
-"Beni seviyor musun çingenem? 💕",
-"Beni seviyor musun çingenem? 💕",
-"Beni çok çok çok seviyor musun? ",
-"Benim seni daha çok sevdiğimi biliyor musun yavrum? 💖"
+"Beni seviyor musun yavrum? 💕",
+"Beni seviyor musun yavrum? 💕",
+"Peki beni çok çok çok mu seviyorsun? 💖",
+"Benim seni daha çok sevdiğimi biliyor musun çingenem? 💘"
 ];
 
 let index = 0;
@@ -153,7 +168,7 @@ function moveButton(){
 
 function showVideo(){
     box.innerHTML = `
-    <h1>Seni çok seviyorum çingenem benim❤️</h1>
+    <h1>Seni çok seviyorum çingenem benim ❤️</h1>
     <video controls autoplay>
         <source src="video.mp4" type="video/mp4">
     </video>
